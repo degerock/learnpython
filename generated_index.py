@@ -19,8 +19,9 @@ def generate_body(header, paragraphs):
         i = i + 1
     return "<body>" + body + "</body>"
 def save_page(title, header, paragraphs, output="index.html"):
-    fp = open(output, "w")
-    #today = dt.now()
+    fp = open(output, "w", encoding="utf-8")
+    today = dt.now().date()
+    header += ' ' + str(today)
     page = generate_page(
         head=generate_head(title),
         body = generate_body(header = header, paragraphs = paragraphs)
@@ -28,5 +29,5 @@ def save_page(title, header, paragraphs, output="index.html"):
     print(page, file = fp)
     fp.close()
 
-today = dt.now().date
-save_page(title = "horoscope on today", header = "what the day" + str(today) + "prepare", paragraphs = generated_prophecies())
+today = dt.now().date()
+save_page(title = "horoscope on today", header = "what the day prepare ", paragraphs = generated_prophecies())
